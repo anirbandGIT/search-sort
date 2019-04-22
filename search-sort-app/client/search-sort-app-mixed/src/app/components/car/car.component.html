@@ -1,0 +1,67 @@
+<div class="container-fluid">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">CARS</h1>
+    <p class="lead">
+      HERE I HAVE TRIED TO IMPLEMENT LIVE SEARCH, SEARCH AND SORT ON LIST OF CARS IN FRONTEND
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+  <input
+    class="form-control form-control-sm d-inline myInput"
+    type="text"
+    placeholder="SEARCH BY CAR NAME"
+    [(ngModel)]="carName" (input)="searchCarsLive()"
+    (keyup.enter)='searchCar(searchInput.value)'
+    #searchInput
+  />
+  <button type="button" class="btn btn-danger d-inline" (click)='searchCar(searchInput.value)'>FIND MYCAR</button>
+  </div>
+  </div>
+  <button type="button" class="btn btn-secondary" (click)='sortCars("priceAscending")'>PRICE ↑</button>
+  <button type="button" class="btn btn-secondary" (click)='sortCars("priceDescending")'>PRICE ↓</button>
+  <button type="button" class="btn btn-secondary" (click)='sortCars("newest")'>NEWEST</button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <!-- <th scope="row">1</th> -->
+        <th>NAME</th>
+        <th>BRAND</th>
+        <th>MAKE</th>
+        <th>PRICE</th>
+        <th>COLOR</th>
+        <th>FUEL TYPE</th>
+        <th>MILEAGE</th>
+        <th>DISPLACEMENT</th>
+        <th>SEATS</th>
+        <th>TRANSMISSION</th>
+        <th>YEAR</th>
+        <th>CAR CREATED AT</th>
+        <th>CAR UPDATED AT</th>
+        <td></td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let car of cars">
+        <!-- <th scope="row">1</th> -->
+        <td>{{ car.carName }}</td>
+        <td>{{ car.carBrand }}</td>
+        <td>{{ car.carType }}</td>
+        <td>{{ car.price | currency: 'INR':'symbol-narrow'}} L</td>
+        <td>{{ car.color }}</td>
+        <td>{{ car.fuelType }}</td>
+        <td>{{ car.mileage }} km/litre</td>
+        <td>{{ car.engineDisplacement }} cc</td>
+        <td>{{ car.seats }} seats</td>
+        <td>{{ car.transmission }}</td>
+        <td>{{ car.year }}</td>
+        <td>{{ car.created_at | date }}</td>
+        <td>{{ car.updated_at | date }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
